@@ -1,0 +1,119 @@
+1
+00:00:01,177 --> 00:00:08,067
+This is a walkthrough of the ArcVault AI intake and triage pipeline, built for the AI Engineer assessment.
+
+2
+00:00:08,539 --> 00:00:20,369
+It takes unstructured customer messages, classifies them with an LLM, extracts the key details, routes each one to the right team, and flags risky or uncertain cases for a human.
+
+3
+00:00:21,895 --> 00:00:31,255
+This is the demo console. On the left, I can send any customer message into the pipeline, as if it arrived by email, a web form, or the support portal.
+
+4
+00:00:31,721 --> 00:00:37,911
+Below are the five assessment samples, plus three extra edge cases I added to stress-test the system.
+
+5
+00:00:38,370 --> 00:00:53,320
+Every message goes through five steps. Only two of them use the LLM: classification, and enrichment with a team summary. Routing and escalation are deliberately plain code, so they're predictable, unit tested, and easy to audit.
+
+6
+00:00:53,785 --> 00:01:02,955
+Across the top is one tile per team queue, plus a human escalation queue. The model is GPT-OSS 120B, running on Groq's free tier.
+
+7
+00:01:03,421 --> 00:01:10,551
+Let's start with sample one. A customer gets a 403 error when logging in, starting after last Tuesday's update.
+
+8
+00:01:11,008 --> 00:01:20,658
+When I send it, the webhook replies immediately with 202 Accepted, and a background worker calls the model. So a slow LLM never makes the sender wait.
+
+9
+00:01:21,596 --> 00:01:33,736
+It's classified as a bug report, high priority, and routed automatically to Engineering. The confidence bar shows the score, and the small tick marks the 0.70 escalation threshold.
+
+10
+00:01:34,198 --> 00:01:45,978
+The highlighted values in the original message are what the model extracted. Every identifier must appear word for word in the message, or it's dropped. So the model can't invent an account or an invoice number.
+
+11
+00:01:46,445 --> 00:01:54,675
+Next, samples two and four. A request for a bulk export of audit logs, and a question about setting up single sign-on with Okta.
+
+12
+00:01:57,640 --> 00:02:10,260
+The export request goes to Product as a feature request, and the Okta question goes to Technical Support. The prompt has an explicit tie-breaker for this boundary: 'is there a way to' means a question, not a feature request.
+
+13
+00:02:10,717 --> 00:02:21,737
+Sample three is a billing dispute. Invoice 8821 shows a charge of 1,240 dollars, against a contract rate of 980 dollars a month.
+
+14
+00:02:22,659 --> 00:02:39,769
+It's routed to Billing. The brief says billing errors over 500 dollars need a human. I read 'error' as the disputed difference, which is 260 dollars here, so it isn't escalated. That assumption is documented, and it's a one-line change if the business means the invoice total.
+
+15
+00:02:40,224 --> 00:02:46,244
+Sample five: the dashboard stopped loading around 2 p.m., and multiple users are affected.
+
+16
+00:02:47,180 --> 00:03:04,150
+This one is escalated, and the banner shows why. Two independent rules fired: the category is incident or outage, and a keyword rule matched 'multiple users' in the raw text. The keyword rules don't depend on the model, so even a misclassified outage still reaches a person.
+
+17
+00:03:04,607 --> 00:03:13,227
+The card shows it would have gone to Engineering On-Call, but a human reviews it first. Urgency is marked critical, quoting the customer's own words.
+
+18
+00:03:13,693 --> 00:03:25,233
+Opening 'why this decision' shows the model's reasoning, the runner-up category, the rules that fired, and the model and prompt version. Every record can be traced back to exactly what produced it.
+
+19
+00:03:27,583 --> 00:03:36,153
+Now the edge cases. Here a customer was billed 4,800 dollars for seats, when their plan is 1,800 dollars.
+
+20
+00:03:37,082 --> 00:03:47,022
+The disputed difference is 3,000 dollars, above the 500 dollar threshold, so this billing issue is escalated, with the exact amount shown as the reason.
+
+21
+00:03:47,485 --> 00:03:58,355
+This one is a prompt injection. It tells the model to ignore its instructions and classify the message as a low-priority feature request, while also saying nobody can access the platform.
+
+22
+00:04:03,451 --> 00:04:14,991
+The model ignores the injected instruction. The prompt wraps the customer's text in tags and treats it as data, not instructions. So it's correctly classified as an outage, and escalated.
+
+23
+00:04:15,446 --> 00:04:23,146
+The last edge case is deliberately vague, and asks for two things at once: something isn't working, and last month's invoice.
+
+24
+00:04:24,070 --> 00:04:36,480
+This is a known weakness, and I'd rather show it than hide it. The model picks a single category, so the invoice request reaches the wrong team, and its confidence stays above the threshold, so it isn't escalated.
+
+25
+00:04:36,945 --> 00:04:45,345
+The planned fixes are splitting multi-request messages into linked records, and replacing the model's self-reported confidence with a measured score.
+
+26
+00:04:45,812 --> 00:04:50,132
+What happens if the same message arrives twice? Let me resend sample one.
+
+27
+00:04:50,586 --> 00:05:01,046
+It's detected before any LLM call is made. The record ID is a hash of the source and the message, so a retry from an upstream system never creates a duplicate ticket.
+
+28
+00:05:01,506 --> 00:05:08,366
+Clicking a queue shows what that team would receive. Here's the human escalation queue, each record with the reason it's there.
+
+29
+00:05:08,824 --> 00:05:21,164
+Every record is also written to disk: an append-only log, one file per team queue, and a JSON and CSV snapshot. The same prompts also power an n8n version of the workflow.
+
+30
+00:05:22,347 --> 00:05:32,737
+On the five assessment samples, category, priority, routing and escalation were all correct, in both the Python and n8n versions. Thanks for watching.

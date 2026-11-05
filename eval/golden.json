@@ -1,0 +1,13 @@
+{
+  "_note": "Hand-labelled expected outcomes for the 5 samples. Where reasonable people could disagree, several answers are accepted (lists). Escalation 'null' means either outcome is acceptable.",
+  "sample-1": {"category": ["Bug Report"], "priority": ["High", "Medium"], "queue": "Engineering", "escalated": false,
+               "must_extract": ["403", "arcvault.io/user/jsmith"]},
+  "sample-2": {"category": ["Feature Request"], "priority": ["Low", "Medium"], "queue": "Product", "escalated": false,
+               "must_extract": []},
+  "sample-3": {"category": ["Billing Issue"], "priority": ["Medium", "High"], "queue": "Billing", "escalated": false,
+               "must_extract": ["#8821", "$1,240", "$980"]},
+  "sample-4": {"category": ["Technical Question"], "priority": ["Low", "Medium"], "queue": "Technical Support", "escalated": null,
+               "must_extract": ["Okta"]},
+  "sample-5": {"category": ["Incident/Outage"], "priority": ["High"], "queue": "Engineering On-Call", "escalated": true,
+               "must_extract": ["2pm EST"]}
+}

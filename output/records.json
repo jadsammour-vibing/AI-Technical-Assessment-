@@ -1,0 +1,261 @@
+[
+  {
+    "record_id": "AV-D73160F8DF",
+    "external_id": "sample-1",
+    "source": "Email",
+    "received_at": "2026-11-04T10:11:12+00:00",
+    "processed_at": "2026-11-04T10:11:12+00:00",
+    "raw_message": "Hi, I tried logging in this morning and keep getting a 403 error. My account is arcvault.io/user/jsmith. This started after your update last Tuesday.",
+    "category": "Bug Report",
+    "priority": "High",
+    "confidence": 0.96,
+    "classification_rationale": "User reports a 403 error when trying to log in to their specific account after a recent update, indicating a single‑user login failure.",
+    "runner_up_category": "Incident/Outage",
+    "core_issue": "User cannot log in, receiving a 403 error.",
+    "identifiers": {
+      "account_ids": [
+        "arcvault.io/user/jsmith"
+      ],
+      "invoice_numbers": [],
+      "error_codes": [
+        "403"
+      ],
+      "amounts": [],
+      "products_or_features": [
+        "login"
+      ],
+      "time_references": [
+        "this morning",
+        "last Tuesday"
+      ]
+    },
+    "urgency_signal": {
+      "level": "high",
+      "evidence": [
+        "keep getting a 403 error",
+        "tried logging in this morning"
+      ]
+    },
+    "impact_scope": "single_user",
+    "intended_queue": "Engineering",
+    "destination_queue": "Engineering",
+    "escalation_flag": false,
+    "escalation_reasons": [],
+    "summary": "The user jsmith reports being unable to log in and receives a 403 error starting this morning after the recent update. This issue currently affects only this single user. Engineering should reproduce the 403 response, investigate the recent update’s impact on authentication, and provide a fix or temporary workaround.",
+    "meta": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "prompt_version": "2026-11-04.v4",
+      "llm_attempts": {
+        "classification": 1,
+        "enrichment": 1
+      },
+      "latency_ms": 2542,
+      "errors": [],
+      "dropped_ungrounded_identifiers": []
+    }
+  },
+  {
+    "record_id": "AV-1548AD85FC",
+    "external_id": "sample-2",
+    "source": "Web Form",
+    "received_at": "2026-11-04T10:11:12+00:00",
+    "processed_at": "2026-11-04T10:11:15+00:00",
+    "raw_message": "We'd love to see a bulk export feature for our audit logs. We're a compliance-heavy org and this would save us hours every month.",
+    "category": "Feature Request",
+    "priority": "Low",
+    "confidence": 0.96,
+    "classification_rationale": "The customer asks for a new capability – a bulk export feature for audit logs – which is a classic feature request.",
+    "runner_up_category": "Technical Question",
+    "core_issue": "Request for bulk export feature for audit logs.",
+    "identifiers": {
+      "account_ids": [],
+      "invoice_numbers": [],
+      "error_codes": [],
+      "amounts": [],
+      "products_or_features": [
+        "audit logs"
+      ],
+      "time_references": []
+    },
+    "urgency_signal": {
+      "level": "low",
+      "evidence": [
+        "We'd love to see a bulk export feature for our audit logs."
+      ]
+    },
+    "impact_scope": "organization",
+    "intended_queue": "Product",
+    "destination_queue": "Product",
+    "escalation_flag": false,
+    "escalation_reasons": [],
+    "summary": "The customer is asking for a bulk export capability for audit logs to streamline their compliance processes. This request impacts the entire organization. The product team should log the request, evaluate feasibility, and consider adding it to the product roadmap.",
+    "meta": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "prompt_version": "2026-11-04.v4",
+      "llm_attempts": {
+        "classification": 1,
+        "enrichment": 1
+      },
+      "latency_ms": 17355,
+      "errors": [],
+      "dropped_ungrounded_identifiers": []
+    }
+  },
+  {
+    "record_id": "AV-1B8735F408",
+    "external_id": "sample-3",
+    "source": "Support Portal",
+    "received_at": "2026-11-04T10:11:12+00:00",
+    "processed_at": "2026-11-04T10:11:32+00:00",
+    "raw_message": "Invoice #8821 shows a charge of $1,240 but our contract rate is $980/month. Can someone look into this?",
+    "category": "Billing Issue",
+    "priority": "High",
+    "confidence": 0.97,
+    "classification_rationale": "The customer mentions an invoice discrepancy and asks for it to be looked into, which is a billing dispute about a specific charge amount.",
+    "runner_up_category": null,
+    "core_issue": "Invoice #8821 is overcharged compared to the contract rate",
+    "identifiers": {
+      "account_ids": [],
+      "invoice_numbers": [
+        "#8821"
+      ],
+      "error_codes": [],
+      "amounts": [
+        "$1,240",
+        "$980"
+      ],
+      "products_or_features": [],
+      "time_references": []
+    },
+    "urgency_signal": {
+      "level": "high",
+      "evidence": [
+        "charge of $1,240 but our contract rate is $980/month",
+        "Can someone look into this?"
+      ]
+    },
+    "impact_scope": "organization",
+    "intended_queue": "Billing",
+    "destination_queue": "Billing",
+    "escalation_flag": false,
+    "escalation_reasons": [],
+    "summary": "The customer reports that invoice #8821 shows a $1,240 charge, which exceeds their $980/month contract rate, and requests a review. A billing analyst should verify the invoice against the contract, correct the amount if needed, and communicate any adjustments or credits to the customer.",
+    "meta": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "prompt_version": "2026-11-04.v4",
+      "llm_attempts": {
+        "classification": 1,
+        "enrichment": 1
+      },
+      "latency_ms": 11592,
+      "errors": [],
+      "dropped_ungrounded_identifiers": []
+    }
+  },
+  {
+    "record_id": "AV-335CF0BA48",
+    "external_id": "sample-4",
+    "source": "Email",
+    "received_at": "2026-11-04T10:11:12+00:00",
+    "processed_at": "2026-11-04T10:11:44+00:00",
+    "raw_message": "I'm not sure if this is the right place to ask, but is there a way to set up SSO with Okta? We're evaluating switching our auth provider.",
+    "category": "Technical Question",
+    "priority": "Low",
+    "confidence": 0.97,
+    "classification_rationale": "The user asks \"is there a way to set up SSO with Okta?\" which is a request for information about a supported integration, fitting a Technical Question.",
+    "runner_up_category": null,
+    "core_issue": "Customer wants to know if SSO can be set up with Okta for their organization.",
+    "identifiers": {
+      "account_ids": [],
+      "invoice_numbers": [],
+      "error_codes": [],
+      "amounts": [],
+      "products_or_features": [
+        "SSO",
+        "Okta"
+      ],
+      "time_references": []
+    },
+    "urgency_signal": {
+      "level": "low",
+      "evidence": [
+        "is there a way to set up SSO with Okta?"
+      ]
+    },
+    "impact_scope": "unknown",
+    "intended_queue": "Technical Support",
+    "destination_queue": "Technical Support",
+    "escalation_flag": false,
+    "escalation_reasons": [],
+    "summary": "The requester is evaluating a switch to Okta for authentication and asks whether ArcVault supports SSO integration with Okta. No current service impact is reported. Provide documentation or guidance on configuring Okta SSO for ArcVault.",
+    "meta": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "prompt_version": "2026-11-04.v4",
+      "llm_attempts": {
+        "classification": 1,
+        "enrichment": 1
+      },
+      "latency_ms": 16483,
+      "errors": [],
+      "dropped_ungrounded_identifiers": []
+    }
+  },
+  {
+    "record_id": "AV-0238D32883",
+    "external_id": "sample-5",
+    "source": "Web Form",
+    "received_at": "2026-11-04T10:11:12+00:00",
+    "processed_at": "2026-11-04T10:12:00+00:00",
+    "raw_message": "Your dashboard stopped loading for us around 2pm EST. Checked our end — it's definitely on yours. Multiple users affected.",
+    "category": "Incident/Outage",
+    "priority": "High",
+    "confidence": 0.97,
+    "classification_rationale": "The user reports the dashboard stopped loading for multiple users, indicating a service-wide problem, which matches an Incident/Outage. The impact on several users makes it high priority.",
+    "runner_up_category": "Bug Report",
+    "core_issue": "Dashboard stopped loading for multiple users",
+    "identifiers": {
+      "account_ids": [],
+      "invoice_numbers": [],
+      "error_codes": [],
+      "amounts": [],
+      "products_or_features": [
+        "dashboard"
+      ],
+      "time_references": [
+        "around 2pm EST"
+      ]
+    },
+    "urgency_signal": {
+      "level": "critical",
+      "evidence": [
+        "Your dashboard stopped loading for us around 2pm EST",
+        "Multiple users affected"
+      ]
+    },
+    "impact_scope": "multiple_users",
+    "intended_queue": "Engineering On-Call",
+    "destination_queue": "Human Escalation",
+    "escalation_flag": true,
+    "escalation_reasons": [
+      "category_incident_outage",
+      "keyword:multi_user_impact"
+    ],
+    "summary": "The dashboard has been unresponsive since around 2pm EST, affecting multiple users. Engineering on‑call should immediately investigate the dashboard service outage, identify the root cause, and restore functionality.",
+    "meta": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "prompt_version": "2026-11-04.v4",
+      "llm_attempts": {
+        "classification": 1,
+        "enrichment": 1
+      },
+      "latency_ms": 15759,
+      "errors": [],
+      "dropped_ungrounded_identifiers": []
+    }
+  }
+]
