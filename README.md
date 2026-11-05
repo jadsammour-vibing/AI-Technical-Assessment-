@@ -13,7 +13,7 @@ Each message becomes one structured JSON record.
 | 4.1 Working workflow | **Demo video (5½ min, narrated):** [`docs/demo_walkthrough.mp4`](docs/demo_walkthrough.mp4) (captions in `.srt`). Python service (`intake_server.py`) with a live demo console (`ui/index.html`) **and** n8n export (`n8n/arcvault_triage_workflow.json`), plus real-run screenshots in `docs/` |
 | 4.2 Structured output | `output/records.json` (also `.csv`, plus per-queue files in `output/queues/`) |
 | 4.3 Prompt documentation | [`PROMPTS.md`](PROMPTS.md) |
-| 4.4 Architecture write-up | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
+| 4.4 Architecture write-up (2 pages) | [`ARCHITECTURE.md`](ARCHITECTURE.md), also as [`ARCHITECTURE.pdf`](ARCHITECTURE.pdf) |
 | n8n run with the real model | `output/n8n_records.json`, `docs/n8n_execution_*.png` |
 | Edge cases (injection, multi-intent, $3k error) | `output/edge_cases/` |
 | What I changed after the first real run | [`BUILD_LOG.md`](BUILD_LOG.md) |
